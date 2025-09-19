@@ -44,14 +44,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
+// Definir las propiedades esperadas
 defineProps<{
-  activeSection: string
+  activeSection: 'cv' | 'projects'  
 }>()
 
+// Definir los eventos emitidos
 defineEmits<{
-  navigate: [section: string]
+  navigate: [section: 'cv' | 'projects'] 
 }>()
 
 const toggleMobileMenu = () => {

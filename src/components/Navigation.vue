@@ -6,7 +6,7 @@
           <i class="fas fa-user"></i>
         </div>
       </div>
-      <h2 class="nav-title">Claudia Rey</h2>
+      <h2 class="nav-title">Claudia Rey Benito</h2>
       <p class="nav-subtitle">Desarrolladora Web</p>
     </div>
 

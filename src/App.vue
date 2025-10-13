@@ -41,28 +41,41 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-.main-content {
-  margin-left: 280px;
+
+#app {
+  display:flex;
   min-height: 100vh;
-  
-  @media (max-width: 768px) {
-    margin-left: 0;
+}
+
+/* Ajusta el ancho del nav */
+.navigation {
+  width: 280px;
+  flex-shrink: 0; /* evita que el nav se encoja */
+  border-right: 1px solid #ddd;
+}
+
+/* El main ocupa el resto del espacio */
+.main-content {
+  flex: 1;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  padding: 2rem;
+  margin-left: 0; /* ✅ ya no hace falta margin-left */
+}
+
+/* Vista móvil */
+@media (max-width: 768px) {
+  #app {
+    flex-direction: column; /* ✅ apila nav y main en móvil */
+  }
+
+  .navigation {
+    width: 100%;
+    border-right: none;
+  }
+
+  .main-content {
     padding-top: 70px;
   }
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-body.loaded {
-  opacity: 1;
-  transform: translateY(0);
 }
 </style>

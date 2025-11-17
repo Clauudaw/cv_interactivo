@@ -108,6 +108,11 @@ defineEmits<{
   line-height: 1.6;
   margin-bottom: 30px;
   max-width: 500px;
+    @media (max-width: 768px) {
+    margin:2em 0;
+    margin-top: 15%;
+  }
+
 }
 
 .hero-buttons {

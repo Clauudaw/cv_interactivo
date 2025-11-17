@@ -1,9 +1,9 @@
 <template>
   <!-- Botón hamburguesa fijo arriba solo en móvil -->
-  <button class="mobile-toggle" @click="toggleMobileMenu">
-    <i class="fas fa-bars"></i>
+  <nav class="mobile-toggle nav-mobile" >
+    <i @click="toggleMobileMenu" type="button" class="fas fa-bars"></i>
     <span class="mobile-menu-label"></span>
-  </button>
+  </nav>
 
   <nav :class="['navigation', { 'mobile-open': isMobileOpen }]">
     <div class="nav-header">
@@ -41,10 +41,9 @@
         </div>
       </div>
     </div>
-
-    <!-- Overlay móvil -->
-    <div v-if="isMobileOpen" class="mobile-overlay" @click="closeMobileMenu"></div>
   </nav>
+  <!-- Overlay móvil -->
+    <div v-if="isMobileOpen" class="mobile-overlay" @click="closeMobileMenu"></div>
 </template>
 
 <script setup lang="ts">
@@ -70,9 +69,15 @@ watch(
 </script>
 
 <style lang="scss">
+.nav-mobile{
+   position: fixed;
+   z-index: 999;
+}
+
 /* Botón hamburguesa fijo solo en móvil */
 .mobile-toggle {
   display: none;
+
   @media (max-width: 768px) {
     display: flex;
     align-items: center;
@@ -80,104 +85,123 @@ watch(
     position: fixed;
     top: 0;
     left: 0;
-    height: 56px;
+    height: 70px;
     width: 100vw;
-    padding-left: 1rem;
+    padding: 0 1rem;
     background: linear-gradient(90deg, var(--primary-color, #26357b) 0%, var(--secondary-color, #5158b8) 100%);
     color: white;
-    border-radius: 0;
     font-size: 2rem;
-    border: none;
-    box-sizing: border-box;
     border-bottom: 1px solid rgba(255, 255, 255, 0.63);
     z-index: 300;
     cursor: pointer;
   }
 }
+
 .mobile-menu-label {
   display: none;
   margin-left: 0.5rem;
   font-size: 1rem;
   font-weight: 700;
+
   @media (max-width: 768px) {
     display: inline;
-    vertical-align: middle;
   }
 }
 
-/* NAV LATERAL */
+/* ------------------------------
+   NAV LATERAL
+------------------------------ */
 .navigation {
   position: fixed;
   top: 0;
   left: 0;
   width: 280px;
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(180deg, var(--primary-color, #26357b) 0%, var(--secondary-color, #5158b8) 100%);
   color: white;
   display: flex;
   flex-direction: column;
-  z-index: 100;
+  z-index: 200;
   transition: transform 0.3s ease;
+  overflow-y: auto;
+}
 
-  @media (max-width: 768px) {
-    width: 80vw;
-    max-width: 280px;
-    height: 100vh;
+/* Móvil: menú oculto y se desliza */
+@media (max-width: 768px) {
+  .navigation {
+    width: 100vw;
+    height: calc(100vh - 70px);
+    top: 70px; /* justo debajo del botón */
     transform: translateX(-100%);
-    padding-top: 56px; /* deja sitio al botón arriba */
     z-index: 200;
-    &.mobile-open {
-      transform: translateX(0);
-      z-index: 201;
-    }
+    overflow-y: auto;
+  }
+
+  .navigation.mobile-open {
+    transform: translateX(0);
+    z-index: 201;
   }
 }
 
+/* ------------------------------
+   OVERLAY MÓVIL
+------------------------------ */
 .mobile-overlay {
   display: none;
-  z-index: 150;
+
   @media (max-width: 768px) {
-    display: block;
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.1);
+    top: 70px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    background: rgba(0, 0, 0, 0.3);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
     z-index: 199;
   }
-  .mobile-open & {
-    opacity: 1;
-    pointer-events: all;
-  }
 }
 
+.navigation.mobile-open + .mobile-overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ------------------------------
+   ESTILOS DEL CONTENIDO DEL NAV
+------------------------------ */
 .nav-header {
   padding: 2rem;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
   @media (max-width: 768px) {
     display: none;
   }
 }
+
 .nav-footer {
   padding: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+
   @media (max-width: 768px) {
     display: none;
   }
 }
+
 .nav-menu {
   flex: 1;
   padding: 1.5rem 0;
 
   @media (max-width: 768px) {
-    padding: 5rem 1rem 2rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 }
+
 .nav-item {
   display: flex;
   align-items: center;
@@ -190,17 +214,21 @@ watch(
   cursor: pointer;
   transition: all 0.3s ease;
   width: 100%;
+
   &:hover,
   &.active {
     background: rgba(255, 255, 255, 0.2);
     padding-left: 2.5rem;
   }
+
   i {
     font-size: 1.2rem;
   }
 }
+
 .profile-image {
   margin-bottom: 1.5rem;
+
   .image-placeholder {
     width: 100px;
     height: 100px;
@@ -214,14 +242,16 @@ watch(
     backdrop-filter: blur(10px);
   }
 }
+
 .nav-title {
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
+
 .nav-subtitle {
   opacity: 0.9;
   font-size: 0.9rem;
-  margin: 0;
 }
+
 </style>

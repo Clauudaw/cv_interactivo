@@ -1,6 +1,6 @@
 <template>
   <!-- Botón hamburguesa fijo arriba solo en móvil -->
-  <nav class="mobile-toggle nav-mobile" >
+  <nav class="mobile-toggle " >
     <i @click="toggleMobileMenu" type="button" class="fas fa-bars"></i>
     <span class="mobile-menu-label"></span>
   </nav>
@@ -69,10 +69,7 @@ watch(
 </script>
 
 <style lang="scss">
-.nav-mobile{
-   position: fixed;
-   z-index: 999;
-}
+
 
 /* Botón hamburguesa fijo solo en móvil */
 .mobile-toggle {

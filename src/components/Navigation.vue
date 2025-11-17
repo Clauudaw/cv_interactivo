@@ -31,7 +31,7 @@
       >
         <i class="fas fa-folder-open"></i>
         <span>Proyectos</span>
-      </button>
+      </button>  
     </div>
 
     <div class="nav-footer">
@@ -66,11 +66,16 @@ watch(
   () => props.activeSection,
   () => { closeMobileMenu() }
 )
+watch(isMobileOpen, (open) => {
+  if (open) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
 </script>
 
 <style lang="scss">
-
-
 /* Botón hamburguesa fijo solo en móvil */
 .mobile-toggle {
   display: none;
@@ -109,11 +114,11 @@ watch(
    NAV LATERAL
 ------------------------------ */
 .navigation {
-  position: fixed;
+  position: static;
   top: 0;
   left: 0;
   width: 280px;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(180deg, var(--primary-color, #26357b) 0%, var(--secondary-color, #5158b8) 100%);
   color: white;
   display: flex;
@@ -126,8 +131,8 @@ watch(
 /* Móvil: menú oculto y se desliza */
 @media (max-width: 768px) {
   .navigation {
+    position:fixed;
     width: 100vw;
-    height: calc(100vh - 70px);
     top: 70px; /* justo debajo del botón */
     transform: translateX(-100%);
     z-index: 200;
@@ -174,7 +179,13 @@ watch(
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
   @media (max-width: 768px) {
-    display: none;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  text-align: center;
+  border-color: rgba(255,255,255,0.2);
+  border-style: solid;
+  border-width: 0 0 1px 0;
   }
 }
 
@@ -182,9 +193,7 @@ watch(
   padding: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 
-  @media (max-width: 768px) {
-    display: none;
-  }
+   
 }
 
 .nav-menu {

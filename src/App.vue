@@ -59,8 +59,6 @@ onMounted(() => {
   flex: 1;
   min-height: 100vh;
   background-color: #f9f9f9;
-  padding: 2rem;
-  margin-left: 0; /* ✅ ya no hace falta margin-left */
 }
 
 /* Vista móvil */

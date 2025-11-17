@@ -127,19 +127,28 @@ const viewProjectDetails = (project: Project) => {
 }
 
 .projects-container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 40px;
-  
+  display: flex;
+  flex-wrap: wrap;   
+  gap: 20px;
+
+  & > * {
+    flex: 1 1 300px;  
+  }
+
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 30px;
+    flex-direction: column;
+    gap: 10px;
+
+    & > * {
+      flex: 1 1 auto; 
+    }
   }
 }
+
 </style>

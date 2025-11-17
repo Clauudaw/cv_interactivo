@@ -55,7 +55,7 @@ const projects = ref<Project[]>([
     autenticación, y un diseño moderno e intuitivo.`,
   technologies: ["Html5","JavaScript","Bootstrap", "Sass", "MySQL", "Php"],
   image: "/sala5.png",
-  demoUrl: "#",
+  demoUrl: "https://findthebeat.page.gd",
   githubUrl: "https://github.com/Clauudaw/TFC_FindTheBeat",
   status: "completed",
   category: "Web Application"

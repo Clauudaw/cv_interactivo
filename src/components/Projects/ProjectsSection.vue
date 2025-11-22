@@ -18,10 +18,11 @@
 
     <!-- Modal para detalles del proyecto -->
     <ProjectModal 
-      v-if="selectedProject"
-      :project="selectedProject"
-      @close="selectedProject = null"
-    />
+    v-if="selectedProject && ![1, 2].includes(selectedProject.id)"
+    :project="selectedProject"
+    @close="selectedProject = null"
+  />
+
   </div>
 </template>
 

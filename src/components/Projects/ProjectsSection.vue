@@ -72,21 +72,10 @@ const projects = ref<Project[]>([
     status: "completed",
     category: "Data Visualization"
   },
-  {
-    id: 3,
-    title: "Task Management App",
-    description: "Aplicación de gestión de tareas colaborativa con funciones de equipo y seguimiento de proyectos.",
-    longDescription: "Herramienta de productividad diseñada para equipos de trabajo. Permite crear proyectos, asignar tareas, establecer deadlines y monitorear el progreso. Incluye sistema de notificaciones, comentarios colaborativos, tableros Kanban y reportes de productividad. Desarrollada con arquitectura modular y responsive design.",
-    technologies: ["Vue.js", "Firebase", "Vuetify", "PWA", "Jest"],
-    image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
-    demoUrl: "#",
-    githubUrl: "#",
-    status: "in-progress",
-    category: "Productivity"
-  }
 ])
 
 const viewProjectDetails = (project: Project) => {
+  if (project.id === 1 || project.id === 2) return
   selectedProject.value = project
 }
 </script>

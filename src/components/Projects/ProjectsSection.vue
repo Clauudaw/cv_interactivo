@@ -18,7 +18,7 @@
 
     <!-- Modal para detalles del proyecto -->
     <ProjectModal 
-    v-if="selectedProject && ![1, 2].includes(selectedProject.id)"
+    v-if="selectedProject && ![2].includes(selectedProject.id)"
     :project="selectedProject"
     @close="selectedProject = null"
   />
@@ -60,23 +60,11 @@ const projects = ref<Project[]>([
   githubUrl: "https://github.com/Clauudaw/TFC_FindTheBeat",
   status: "completed",
   category: "Web Application"
-},
-  {
-    id: 2,
-    title: "Dashboard Analytics",
-    description: "Panel de control interactivo con gráficos en tiempo real y métricas de rendimiento.",
-    longDescription: "Dashboard completo para análisis de datos con múltiples visualizaciones interactivas. Desarrollado con Vue.js y Chart.js, permite monitorear métricas en tiempo real, exportar reportes y configurar alertas personalizadas. Incluye sistema de roles y permisos para diferentes niveles de acceso.",
-    technologies: ["Vue.js", "Chart.js", "Socket.io", "Node.js", "MongoDB"],
-    image: "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=800",
-    demoUrl: "#",
-    githubUrl: "#",
-    status: "completed",
-    category: "Data Visualization"
-  },
+}
 ])
 
 const viewProjectDetails = (project: Project) => {
-  if ([1, 2].includes(project.id)) return
+  if ([2].includes(project.id)) return
   selectedProject.value = project
 }
 

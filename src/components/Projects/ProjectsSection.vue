@@ -75,9 +75,10 @@ const projects = ref<Project[]>([
 ])
 
 const viewProjectDetails = (project: Project) => {
-  if (project.id === 1 || project.id === 2) return
+  if ([1, 2].includes(project.id)) return
   selectedProject.value = project
 }
+
 </script>
 
 <style lang="scss" scoped>
